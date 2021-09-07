@@ -6,7 +6,7 @@
 
 #control-panel{
     background: #66D;
-    height: 100px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;

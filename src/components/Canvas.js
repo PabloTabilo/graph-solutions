@@ -8,6 +8,7 @@ var myGraph = new Graph();
 
 var fromId = null;
 var toId = null;
+var dragMe = false;
 
 function Canvas({height, width}) {
     const canvas = React.useRef(null);
@@ -75,9 +76,48 @@ function Canvas({height, width}) {
       }
     }
 
+    let handleMouseDown = (e) => {
+      console.log("handleMouseDown");
+      if(fromId !== null){
+        // Seleccionado, ademas quiero arrastrarlo
+        dragMe = true;
+      }
+    }
+
+    let handleTouchStart = (e) =>{
+      console.log("handleTouchStart");
+    }
+
+    let handleMouseMove = (e) =>{
+      console.log("handleMouseMove");
+      let xPos = e.clientX;
+      let yPos = e.clientY;
+      if(fromId !== null && dragMe){
+        // Seleccionado, ademas quiero arrastrarlo
+        myGraph.nodesOn[fromId].x = xPos;
+        myGraph.nodesOn[fromId].y = yPos;
+        myGraph.redraw(context, width, height);
+      }
+    }
+
+    let handleMouseUp = (e) =>{
+      console.log("handleMouseUp");
+      dragMe = false;
+
+    }
+
+    let handleTouchEnd = (e) =>{
+      console.log("handleTouchEnd");
+    }
+
     return (
       <canvas
         onClick={handleClick}
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onTouchEnd={handleTouchEnd}
         className="canvas"
         ref={canvas}
         width={width}
