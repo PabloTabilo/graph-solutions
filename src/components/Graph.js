@@ -26,7 +26,6 @@ export class Graph{
     }
 
     removeNode(v_id){
-        console.log(this.nodesOn);
         // Eliminate any edge (track) of this vertex
         for(const v in this.nodesOn){
             if(this.nodesOn[v].numConnections > 0){
@@ -39,18 +38,17 @@ export class Graph{
         this.nodesOn[v_id].connectTo = {}
         delete this.nodesOn[v_id];
         this.numNodes--;
-        console.log(this.nodesOn);
     }
 
     redraw = (ctx) => {
         ctx.clearRect(0, 0, this.width, this.height);
         for(const v in this.nodesOn){
-            this.nodesOn[v].drawVertex(ctx);
             if(this.nodesOn[v].numConnections > 0){
                 for(const n in this.nodesOn[v].connectTo){
-                    this.nodesOn[v].drawEdge(ctx, this.nodesOn[n], true);
+                    this.nodesOn[v].drawEdge(ctx, this.nodesOn[n], this.directed);
                 }
             }
+            this.nodesOn[v].drawVertex(ctx);
         }
     };
 }

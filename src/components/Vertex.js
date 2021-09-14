@@ -21,42 +21,28 @@ export class Vertex{
         context.strokeStyle = "black";
         context.lineWidth = 1;
         context.beginPath();
-        let pad = 15;
         let fromx = this.x;
         let fromy = this.y;
         let tox = vertexTo.x;
         let toy = vertexTo.y;
-        /*
-        if(this.x < vertexTo.x){
-            fromx += pad;
-            tox -= pad;
-        }else{
-            fromx -= pad;
-            tox += pad;
-        }
-        if(this.y < vertexTo.y){
-            fromy += pad;
-            toy -= pad;
-        }else{
-            fromy -= pad;
-            toy += pad;
-        }
-        */
+        context.moveTo(fromx, fromy);
+
+        let dx = tox - this.x;
+        let dy = toy - this.y;
+        let angle = Math.atan2(dy, dx);
+
+        let pad = 20; // like radius
+        let y = toy - Math.sin(angle) * pad;
+        let x = tox - Math.cos(angle) * pad;
+
+        context.lineTo(x, y);
         if(directed){
             let headlen = 15; // length head pixels
-            let dx = tox - this.x;
-            let dy = toy - this.y;
-            let angle = Math.atan2(dy, dx);
-            context.moveTo(fromx, fromy);
-            context.lineTo(tox, toy);
 
-            context.moveTo(tox-pad, toy-pad);
-            context.lineTo(tox-pad - headlen * Math.cos(angle - Math.PI / 6), toy-pad - headlen * Math.sin(angle - Math.PI / 6));
-            context.moveTo(tox-pad, toy-pad);
-            context.lineTo(tox-pad - headlen * Math.cos(angle + Math.PI / 6), toy-pad - headlen * Math.sin(angle + Math.PI / 6));
-        }else{
-            context.moveTo(fromx, fromy);
-            context.lineTo(tox, toy);
+            context.moveTo(x, y);
+            context.lineTo(x - headlen * Math.cos(angle - Math.PI / 6), y - headlen * Math.sin(angle - Math.PI / 6));
+            context.moveTo(x, y);
+            context.lineTo(x - headlen * Math.cos(angle + Math.PI / 6), y - headlen * Math.sin(angle + Math.PI / 6));
         }
         context.stroke();
     }
