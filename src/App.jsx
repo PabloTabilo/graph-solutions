@@ -17,13 +17,13 @@ function App() {
     <Router>
       <main>
         <Switch>
-          <Route exact path="/"><MinSpaningTree width={myWidth} height={400}></MinSpaningTree></Route>
-          <Route exact path="/topo"><TopologicalSorting width={myWidth} height={400}></TopologicalSorting></Route>
+          <Route exact path="/graph-solutions/"><MinSpaningTree width={myWidth} height={400}></MinSpaningTree></Route>
+          <Route exact path="/graph-solutions/topo"><TopologicalSorting width={myWidth} height={400}></TopologicalSorting></Route>
         </Switch>
       </main>
       <div>
-        <Link to="/">MST</Link>
-        <Link to="/topo">TopologicalSorting</Link>
+        <Link to="/graph-solutions/">MST</Link>
+        <Link to="/graph-solutions/topo">TopologicalSorting</Link>
       </div>
     </Router>
   );
