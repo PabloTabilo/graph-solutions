@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/graph-solutions/static/css/main.b9be095c.chunk.css",
-    "main.js": "/graph-solutions/static/js/main.edc48184.chunk.js",
-    "main.js.map": "/graph-solutions/static/js/main.edc48184.chunk.js.map",
+    "main.js": "/graph-solutions/static/js/main.0c84db8b.chunk.js",
+    "main.js.map": "/graph-solutions/static/js/main.0c84db8b.chunk.js.map",
     "runtime-main.js": "/graph-solutions/static/js/runtime-main.0a5e79d2.js",
     "runtime-main.js.map": "/graph-solutions/static/js/runtime-main.0a5e79d2.js.map",
     "static/js/2.71472291.chunk.js": "/graph-solutions/static/js/2.71472291.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.0a5e79d2.js",
     "static/js/2.71472291.chunk.js",
     "static/css/main.b9be095c.chunk.css",
-    "static/js/main.edc48184.chunk.js"
+    "static/js/main.0c84db8b.chunk.js"
   ]
 }
