@@ -46,12 +46,22 @@ function MinSpaningTree({height, width}) {
     }
 
     let handleTouchStart = (e) =>{
-      //console.log("handleTouchStart");
+      console.log("handleTouchStart");
+      if(fromId !== null){
+        dragMe = true;
+      }
     }
 
     let handleMouseMove = (e) =>{
       let makeChanges = false;
       [myGraph, makeChanges] = dragNodeCanvas(e, myGraph, fromId, dragMe);
+      if (makeChanges) myGraph.redraw(contextRef.current);
+    }
+
+    let handleTouchMove = (e) =>{
+      let myE = {clientX:e.touches[0].clientX, clientY:e.touches[0].clientY};
+      let makeChanges = false;
+      [myGraph, makeChanges] = dragNodeCanvas(myE, myGraph, fromId, dragMe);
       if (makeChanges) myGraph.redraw(contextRef.current);
     }
 
@@ -61,7 +71,8 @@ function MinSpaningTree({height, width}) {
     }
 
     let handleTouchEnd = (e) =>{
-      //console.log("handleTouchEnd");
+      console.log("handleTouchEnd");
+      dragMe = false;
     }
 
     return (
@@ -70,6 +81,7 @@ function MinSpaningTree({height, width}) {
           onClick={handleClick}
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onTouchEnd={handleTouchEnd}
