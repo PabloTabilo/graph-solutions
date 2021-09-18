@@ -5,6 +5,11 @@
     touch-action: none;
 }
 
+body{
+    height: 100%;
+    overflow: hidden;
+}
+
 #control-panel{
     background: #66D;
     height: 100%;
