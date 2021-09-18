@@ -34,6 +34,7 @@ function MinSpaningTree({height, width}) {
     }
 
     let handleClick = (e) =>{
+      e.preventDefault();
       [myGraph, fromId, toId] = AddOrSelect(e, myGraph, fromId, toId);
       myGraph.redraw(contextRef.current);
     }
@@ -53,6 +54,7 @@ function MinSpaningTree({height, width}) {
     }
 
     let handleMouseMove = (e) =>{
+      e.preventDefault();
       let makeChanges = false;
       [myGraph, makeChanges] = dragNodeCanvas(e, myGraph, fromId, dragMe);
       if (makeChanges) myGraph.redraw(contextRef.current);
@@ -66,6 +68,7 @@ function MinSpaningTree({height, width}) {
     }
 
     let handleMouseUp = (e) =>{
+      e.preventDefault();
       //console.log("handleMouseUp");
       dragMe = false;
     }
