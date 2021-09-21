@@ -41,11 +41,22 @@ export class Graph{
     }
 
     redraw = (ctx) => {
+        let temporal = [];
+        let notRepeat = false;
         ctx.clearRect(0, 0, this.width, this.height);
         for(const v in this.nodesOn){
             if(this.nodesOn[v].numConnections > 0){
                 for(const n in this.nodesOn[v].connectTo){
-                    this.nodesOn[v].drawEdge(ctx, this.nodesOn[n], this.directed);
+                    if(temporal.length === 0){
+                        temporal.push((parseInt(n)+1)*(parseInt(v)+1));
+                    }else{
+                        for(let i of temporal){
+                            if (parseInt(i) === (parseInt(n)+1)*(parseInt(v)+1)) notRepeat = true;
+                        }
+                    }
+                    if(!notRepeat)
+                        this.nodesOn[v].drawEdge(ctx, this.nodesOn[n], this.directed, this.nodesOn[v].connectTo[n]);
+                    notRepeat = false;
                 }
             }
             this.nodesOn[v].drawVertex(ctx);

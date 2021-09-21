@@ -1,3 +1,8 @@
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 export function removeNodeCanvas(fromId, myGraph){
     if(fromId !== null && myGraph.nodesOn[fromId].selectMe){
       myGraph.nodesOn[fromId].selectMe = false;
@@ -45,7 +50,7 @@ export function AddOrSelect(e, myGraph, fromId, toId){
             }else{
               toId = saveIdx;
               // Crear edge
-              myGraph.addNeightNode(fromId, toId, 1);
+              myGraph.addNeightNode(fromId, toId, getRandomInt(-20, 20));
               myGraph.nodesOn[fromId].selectMe = false;
               myGraph.nodesOn[toId].selectMe = false;
               fromId = null;

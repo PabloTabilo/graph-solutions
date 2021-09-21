@@ -96,6 +96,7 @@ function MinSpaningTree({height, width}) {
 
           <div id="control-panel">
           <div id="changeButtons">
+            <button id="play">Solve</button>
             <button id="removeMe" onClick={handleRemove}>Remove Node</button>
             <button id="autograph">AutoGraph</button>
             </div>

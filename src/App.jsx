@@ -16,14 +16,18 @@ function App() {
   return (
     <Router>
       <main>
-        <Switch>
-          <Route exact path="/graph-solutions/"><MinSpaningTree width={myWidth} height={400}></MinSpaningTree></Route>
-          <Route exact path="/graph-solutions/topo"><TopologicalSorting width={myWidth} height={400}></TopologicalSorting></Route>
-        </Switch>
+          <Switch>
+            <Route exact path="/graph-solutions/"><MinSpaningTree width={myWidth} height={400}></MinSpaningTree></Route>
+            <Route exact path="/graph-solutions/topo"><TopologicalSorting width={myWidth} height={400}></TopologicalSorting></Route>
+            <Route exact path="/graph-solutions/"><MinSpaningTree width={myWidth} height={400}></MinSpaningTree></Route>
+            <Route exact path="/graph-solutions/topo"><TopologicalSorting width={myWidth} height={400}></TopologicalSorting></Route>
+          </Switch>
       </main>
-      <div>
-        <Link to="/graph-solutions/">MST</Link>
-        <Link to="/graph-solutions/topo">TopologicalSorting</Link>
+      <div id="switcher">
+        <div><Link to="/graph-solutions/">MST</Link></div>
+        <div><Link to="/graph-solutions/topo">TopologicalSorting</Link></div>
+        <div><Link to="/graph-solutions/">Strongly Connected Components</Link></div>
+        <div><Link to="/graph-solutions/topo">MaxFlow</Link></div>
       </div>
     </Router>
   );

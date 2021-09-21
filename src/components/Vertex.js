@@ -17,7 +17,7 @@ export class Vertex{
         delete(this.connectTo[id]);
         this.numConnections--;
     }
-    drawEdge(context, vertexTo, directed){
+    drawEdge(context, vertexTo, directed, weight){
         context.strokeStyle = "black";
         context.lineWidth = 1;
         context.beginPath();
@@ -45,6 +45,10 @@ export class Vertex{
             context.lineTo(x - headlen * Math.cos(angle + Math.PI / 6), y - headlen * Math.sin(angle + Math.PI / 6));
         }
         context.stroke();
+        context.font = "30px Comic Sans MS";
+        context.fillStyle = "red";
+        context.textAlign = "center";
+        context.fillText(weight, (fromx+tox)/2, (fromy+toy)/2);
     }
     drawVertex(ctx){
         ctx.beginPath();
