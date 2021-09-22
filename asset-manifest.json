@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/graph-solutions/static/css/main.ac724aad.chunk.css",
-    "main.js": "/graph-solutions/static/js/main.5a9dea61.chunk.js",
-    "main.js.map": "/graph-solutions/static/js/main.5a9dea61.chunk.js.map",
+    "main.css": "/graph-solutions/static/css/main.43f55030.chunk.css",
+    "main.js": "/graph-solutions/static/js/main.e879dbd5.chunk.js",
+    "main.js.map": "/graph-solutions/static/js/main.e879dbd5.chunk.js.map",
     "runtime-main.js": "/graph-solutions/static/js/runtime-main.0a5e79d2.js",
     "runtime-main.js.map": "/graph-solutions/static/js/runtime-main.0a5e79d2.js.map",
-    "static/js/2.71472291.chunk.js": "/graph-solutions/static/js/2.71472291.chunk.js",
-    "static/js/2.71472291.chunk.js.map": "/graph-solutions/static/js/2.71472291.chunk.js.map",
+    "static/js/2.6e808420.chunk.js": "/graph-solutions/static/js/2.6e808420.chunk.js",
+    "static/js/2.6e808420.chunk.js.map": "/graph-solutions/static/js/2.6e808420.chunk.js.map",
     "index.html": "/graph-solutions/index.html",
-    "static/css/main.ac724aad.chunk.css.map": "/graph-solutions/static/css/main.ac724aad.chunk.css.map",
-    "static/js/2.71472291.chunk.js.LICENSE.txt": "/graph-solutions/static/js/2.71472291.chunk.js.LICENSE.txt"
+    "static/css/main.43f55030.chunk.css.map": "/graph-solutions/static/css/main.43f55030.chunk.css.map",
+    "static/js/2.6e808420.chunk.js.LICENSE.txt": "/graph-solutions/static/js/2.6e808420.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.0a5e79d2.js",
-    "static/js/2.71472291.chunk.js",
-    "static/css/main.ac724aad.chunk.css",
-    "static/js/main.5a9dea61.chunk.js"
+    "static/js/2.6e808420.chunk.js",
+    "static/css/main.43f55030.chunk.css",
+    "static/js/main.e879dbd5.chunk.js"
   ]
 }
