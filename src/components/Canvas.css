@@ -1,5 +1,6 @@
 .canvas{
     border: 3px solid red;
+    touch-action: none;
 }
 .canvas{
     -webkit-touch-callout: none;
