@@ -55,7 +55,7 @@ export class Graph{
                         }
                     }
                     if(!notRepeat)
-                        this.nodesOn[v].drawEdge(ctx, this.nodesOn[n], this.directed, this.nodesOn[v].connectTo[n]);
+                        this.nodesOn[v].drawEdge(ctx, this.nodesOn[n], this.directed, this.nodesOn[v].connectTo[n], false);
                     notRepeat = false;
                 }
             }

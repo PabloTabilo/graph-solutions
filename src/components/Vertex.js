@@ -6,7 +6,7 @@ export class Vertex{
         this.y = y;
         this.connectTo = {};
         this.selectMe = false;
-
+        this.partOfSolution = false;
         this.numConnections = 0;
     }
     addNeight(idTo, weight=0){
@@ -17,9 +17,15 @@ export class Vertex{
         delete(this.connectTo[id]);
         this.numConnections--;
     }
-    drawEdge(context, vertexTo, directed, weight){
-        context.strokeStyle = "black";
-        context.lineWidth = 1;
+    drawEdge(context, vertexTo, directed, weight, partOfSolEdge){
+        if(partOfSolEdge){
+            context.strokeStyle = "orange";
+            context.lineWidth = 5;
+        }
+        else{
+            context.lineWidth = 1;
+            context.strokeStyle = "black";
+        }
         context.beginPath();
         let fromx = this.x;
         let fromy = this.y;
@@ -45,8 +51,12 @@ export class Vertex{
             context.lineTo(x - headlen * Math.cos(angle + Math.PI / 6), y - headlen * Math.sin(angle + Math.PI / 6));
         }
         context.stroke();
-        context.font = "30px Comic Sans MS";
-        context.fillStyle = "red";
+        context.font = "25px Comic Sans MS";
+        if(partOfSolEdge){
+            context.fillStyle = "red";
+        }else{
+            context.fillStyle = "gray";
+        }
         context.textAlign = "center";
         context.fillText(weight, (fromx+tox)/2, (fromy+toy)/2);
     }
@@ -58,9 +68,16 @@ export class Vertex{
         }else{
             ctx.fillStyle = "white";
         }
+        if(this.partOfSolution){
+            ctx.fillStyle = "orange";
+        }
         ctx.fill();
         ctx.lineWidth = 2;
         ctx.strokeStyle = "black";
         ctx.stroke();
+        ctx.font = "15px Comic Sans MS";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
+        ctx.fillText(this.id, this.x, this.y);
     }
 }

@@ -2,6 +2,7 @@ import React, {useRef, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import "./Canvas.css";
 import {Graph} from './Graph';
+import {Kruskals} from './algorithms/Kruskals';
 import {
   removeNodeCanvas,
   dragNodeCanvas,
@@ -78,6 +79,36 @@ function MinSpaningTree({height, width}) {
       dragMe = false;
     }
 
+    let playModel = () =>{
+      let inst = new Kruskals(myGraph);
+      inst.solve();
+      let res = inst.solution;
+      console.log(res);
+      animationSolve(0, res);
+    }
+
+    function animationSolve(j, res){
+      if (j >= res.length) return;
+      // j no puede ser superior al tamano de res
+      let u = res[j][0];
+      let v = res[j][1];
+      let w = res[j][2];
+      // pintar edge u, v
+      myGraph.nodesOn[u].drawEdge(contextRef.current, myGraph.nodesOn[v], false, w, true);
+      // pintar u
+      myGraph.nodesOn[u].partOfSolution = true;
+      myGraph.nodesOn[u].drawVertex(contextRef.current);
+      // pintar v
+      myGraph.nodesOn[v].partOfSolution = true;
+      myGraph.nodesOn[v].drawVertex(contextRef.current);
+
+      myGraph.nodesOn[u].partOfSolution = false;
+      myGraph.nodesOn[v].partOfSolution = false;
+      setTimeout(()=>{
+        animationSolve(j+1, res);
+      }, 1000);
+    }
+
     return (
       <main>
         <canvas
@@ -96,7 +127,7 @@ function MinSpaningTree({height, width}) {
 
           <div id="control-panel">
           <div id="changeButtons">
-            <button id="play">Solve</button>
+            <button id="play" onClick={playModel}>Solve</button>
             <button id="removeMe" onClick={handleRemove}>Remove Node</button>
             <button id="autograph">AutoGraph</button>
             </div>
