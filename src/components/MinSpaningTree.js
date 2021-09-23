@@ -83,7 +83,6 @@ function MinSpaningTree({height, width}) {
       let inst = new Kruskals(myGraph);
       inst.solve();
       let res = inst.solution;
-      console.log(res);
       animationSolve(0, res);
     }
 

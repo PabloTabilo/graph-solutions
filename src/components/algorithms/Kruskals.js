@@ -25,15 +25,20 @@ export class Kruskals{
     }
     find(p, arrRoot){
         let root = p;
-        while(root !== arrRoot[p])
-            root = arrRoot[p];
+        while(root !== arrRoot[root]){
+            root = arrRoot[root];
+        }
+
+        while(p !== root){
+            let next = arrRoot[p];
+            arrRoot[p] = root;
+            p = next;
+        }
         return root;
     }
     union(p, q, arrRoot, arrSize){
         let root1 = this.find(p, arrRoot);
         let root2 = this.find(q, arrRoot);
-        console.log("p: ", p," ;root1: ", root1,"; arrSize[root1]: ", arrSize[root1]);
-        console.log("q: ", q,"; root2: ", root2,"; arrSize[root2]: ", arrSize[root2]);
         if(root1 === root2) return false; // are in the same group
         if(arrSize[root1] < arrSize[root2]){
             arrSize[root2] += arrSize[root1];
@@ -43,7 +48,6 @@ export class Kruskals{
             arrRoot[root2] = parseInt(root1);
         }
         this.numComponents--;
-        console.log("------------------");
         return true;
     }
     solve(){
@@ -56,12 +60,13 @@ export class Kruskals{
             }
         }
         temporalArr = givemePairs(temporalArr.sort(Comparator));
-        console.log(temporalArr);
-        let arrSize = [];
-        let arrRoot = [];
-        for(let i=0; i<this.myGraph.numNodes; i++){
-            arrSize.push(1);
-            arrRoot.push(i);
+
+        let arrSize = {};
+        let arrRoot = {};
+        let map = new Map(Object.entries(this.myGraph.nodesOn)); // for iterable object
+        for(let u of map){
+            arrSize[u[1].id] = 1;
+            arrRoot[u[1].id] = u[1].id;
         }
         let i = 0;
         while(i<temporalArr.length){
@@ -71,8 +76,6 @@ export class Kruskals{
                 let w = parseInt(temporalArr[i][2]);
                 this.solution.push([p,q,w]);
             }
-            console.log("arrSize: ", arrSize);
-            console.log("arrRoot: ", arrRoot);
             i++;
         }
     }
