@@ -16,9 +16,19 @@ body{
     justify-content: center;
 }
 
-button {
+#changeButtons{
+    width: 100%;
+    display: flex;
+}
+
+#changeButtons button{
+    width: 100%;
     height: 30px;
-    margin: 5px 0px;
+}
+
+#algorithms-topic{
+    margin: 10px 0px;
+    display: flex;
 }
 
 #switcher{

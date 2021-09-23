@@ -5,18 +5,6 @@ function Comparator(a, b){
     return 0;
 }
 
-function givemePairs(arr){
-    let temp = [];
-    for(let i in arr){
-        if(i === 0) temp.push(arr[i]);
-        else if(i === 1) continue;
-        else{
-            if(i%2 === 0) temp.push(arr[i])
-        }
-    }
-    return temp;
-}
-
 export class Kruskals{
     constructor(myGraph){
         this.myGraph = myGraph;
@@ -29,6 +17,7 @@ export class Kruskals{
             root = arrRoot[root];
         }
 
+        // path-compression
         while(p !== root){
             let next = arrRoot[p];
             arrRoot[p] = root;
@@ -59,8 +48,7 @@ export class Kruskals{
                 temporalArr.push(myTuple);
             }
         }
-        temporalArr = givemePairs(temporalArr.sort(Comparator));
-
+        temporalArr = temporalArr.sort(Comparator);
         let arrSize = {};
         let arrRoot = {};
         let map = new Map(Object.entries(this.myGraph.nodesOn)); // for iterable object

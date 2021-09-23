@@ -24,8 +24,8 @@ function App() {
           </Switch>
       </main>
       <div id="switcher">
-        <div><Link to="/graph-solutions/">MST</Link></div>
-        <div><Link to="/graph-solutions/topo">TopologicalSorting</Link></div>
+        <div><Link to="/graph-solutions/">Minimum Spaning Tree</Link></div>
+        <div><Link to="/graph-solutions/topo">Topological Sorting</Link></div>
         <div><Link to="/graph-solutions/">Strongly Connected Components</Link></div>
         <div><Link to="/graph-solutions/topo">MaxFlow</Link></div>
       </div>

@@ -125,18 +125,19 @@ function MinSpaningTree({height, width}) {
           ></canvas>
 
           <div id="control-panel">
-          <div id="changeButtons">
-            <button id="play" onClick={playModel}>Solve</button>
-            <button id="removeMe" onClick={handleRemove}>Remove Node</button>
-            <button id="autograph">AutoGraph</button>
+            <div id="changeButtons">
+              <button id="play" onClick={playModel}>Solve</button>
+              <button id="removeMe" onClick={handleRemove}>Remove Node</button>
+              <button id="Clear">Clear Board</button>
+              <button id="autograph">AutoGraph</button>
             </div>
-          <div id="algorithms-topic">
-            <h1>Select an algorithm for find the minimum spaning Tree: </h1>
-            <select>
-              <option>Kruskal's MST</option>
-              <option>Prim's MST</option>
-            </select>
-          </div>
+            <div id="algorithms-topic">
+              <h1>Select an algorithm for Minimum Spaning Tree: </h1>
+              <select>
+                <option>Kruskal's MST</option>
+                <option>Prim's MST</option>
+              </select>
+            </div>
         </div>
       </main>
     );
