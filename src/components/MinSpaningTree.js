@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import "./Canvas.css";
 import {Graph} from './Graph';
 import {Kruskals} from './algorithms/Kruskals';
+import {Prims} from "./algorithms/Prims";
 import {
   removeNodeCanvas,
   dragNodeCanvas,
   AddOrSelect
 
 } from './useCanvas'
+
+// Return random number between min (include) y max (exclude)
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
 
 // unique id
 var fromId = null;
@@ -28,10 +34,39 @@ function MinSpaningTree({height, width}) {
     }, []);
 
     var myGraph = new Graph(height, width, false);
+
     let handleRemove = () => {
       let makeChanges = false;
       [myGraph, fromId, makeChanges] = removeNodeCanvas(fromId, myGraph);
       if (makeChanges) myGraph.redraw(contextRef.current);
+    }
+
+    let autoGraph = () =>{
+      removeGraph();
+      let n = getRandomInt(5, 9);
+      for(let i = 0; i < n; i++){
+        let x = getRandomInt(20, width-20);
+        let y = getRandomInt(20, height-20);
+        myGraph.addNode(x, y);
+      }
+      for(let i = 0; i < n; i++){
+        for(let j = 0; j < n; j++){
+          if(i !== j){
+            if(Math.random() >= .8)
+              myGraph.addNeightNode(i, j, getRandomInt(-20, 20));
+          }
+        }
+      }
+      myGraph.redraw(contextRef.current);
+    }
+
+    let removeGraph = () =>{
+      myGraph = new Graph(height, width, false);
+      myGraph.redraw(contextRef.current);
+    }
+
+    let clearAlgo = () =>{
+      myGraph.redraw(contextRef.current);
     }
 
     let handleClick = (e) =>{
@@ -41,14 +76,13 @@ function MinSpaningTree({height, width}) {
     }
 
     let handleMouseDown = (e) => {
-      //console.log("handleMouseDown");
       if(fromId !== null){
         dragMe = true;
       }
     }
 
+    // mobile
     let handleTouchStart = (e) =>{
-      console.log("handleTouchStart");
       if(fromId !== null){
         dragMe = true;
       }
@@ -61,6 +95,7 @@ function MinSpaningTree({height, width}) {
       if (makeChanges) myGraph.redraw(contextRef.current);
     }
 
+    // mobile
     let handleTouchMove = (e) =>{
       let myE = {clientX:e.touches[0].clientX, clientY:e.touches[0].clientY};
       let makeChanges = false;
@@ -70,19 +105,26 @@ function MinSpaningTree({height, width}) {
 
     let handleMouseUp = (e) =>{
       e.preventDefault();
-      //console.log("handleMouseUp");
       dragMe = false;
     }
 
+    // mobile
     let handleTouchEnd = (e) =>{
-      console.log("handleTouchEnd");
       dragMe = false;
     }
 
     let playModel = () =>{
-      let inst = new Kruskals(myGraph);
-      inst.solve();
-      let res = inst.solution;
+      let selectElement = document.getElementById("algorithms");
+      let res;
+      if (selectElement.value === "kruskal"){
+        let inst = new Kruskals(myGraph);
+        inst.solve();
+        res = inst.solution;
+      }else{
+        let inst = new Prims(myGraph);
+        inst.solve();
+        res = inst.solution;
+      }
       animationSolve(0, res);
     }
 
@@ -108,6 +150,8 @@ function MinSpaningTree({height, width}) {
       }, 1000);
     }
 
+
+
     return (
       <main>
         <canvas
@@ -128,14 +172,15 @@ function MinSpaningTree({height, width}) {
             <div id="changeButtons">
               <button id="play" onClick={playModel}>Solve</button>
               <button id="removeMe" onClick={handleRemove}>Remove Node</button>
-              <button id="Clear">Clear Board</button>
-              <button id="autograph">AutoGraph</button>
+              <button id="Clear" onClick={clearAlgo}>Clear Board</button>
+              <button id="drop" onClick={removeGraph}>Drop Graph</button>
+              <button id="autograph" onClick={autoGraph}>AutoGraph</button>
             </div>
             <div id="algorithms-topic">
               <h1>Select an algorithm for Minimum Spaning Tree: </h1>
-              <select>
-                <option>Kruskal's MST</option>
-                <option>Prim's MST</option>
+              <select id="algorithms">
+                <option value="kruskal">Kruskal's MST</option>
+                <option value="prim">Prim's MST</option>
               </select>
             </div>
         </div>
